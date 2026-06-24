@@ -2,8 +2,8 @@
   "name": "nexapeak",
   "version": "1.0.0",
   "scripts": {
-    "dev": "node server.js",
-    "start": "node server.js"
+    "dev": "node local-server.js",
+    "start": "node local-server.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0",

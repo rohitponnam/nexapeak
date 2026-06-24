@@ -1,0 +1,35 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "crons": [
+    {
+      "path": "/api/cron",
+      "schedule": "0 * * * *"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" }
+      ]
+    },
+    {
+      "source": "/css/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/js/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    }
+  ],
+  "rewrites": [
+    { "source": "/services",  "destination": "/services.html" },
+    { "source": "/cases",     "destination": "/cases.html" },
+    { "source": "/about",     "destination": "/about.html" },
+    { "source": "/insights",  "destination": "/insights.html" },
+    { "source": "/contact",   "destination": "/contact.html" }
+  ]
+}

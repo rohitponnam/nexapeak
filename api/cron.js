@@ -1,8 +1,8 @@
-import 'dotenv/config';
-import { supabase } from './db.js';
-import { sendEmail, EMAIL_SEQUENCE } from './mailer.js';
+require('dotenv').config();
+const { supabase } = require('./db');
+const { sendEmail, EMAIL_SEQUENCE } = require('./mailer');
 
-export default async function handler(req, res) {
+async function handler(req, res) {
   const authHeader = req.headers['authorization'];
   if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
     return res.status(401).json({ error: 'Unauthorized' });
@@ -74,3 +74,5 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: err.message });
   }
 }
+
+module.exports = handler;

@@ -1,6 +1,6 @@
-import nodemailer from 'nodemailer';
+const nodemailer = require('nodemailer');
 
-export const transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
   port: parseInt(process.env.EMAIL_PORT, 10),
   secure: false,
@@ -10,7 +10,7 @@ export const transporter = nodemailer.createTransport({
   },
 });
 
-export const EMAIL_SEQUENCE = [
+const EMAIL_SEQUENCE = [
   {
     step: 1,
     subject: 'Your IT Transformation Playbook is here',
@@ -144,7 +144,7 @@ export const EMAIL_SEQUENCE = [
   },
 ];
 
-export async function sendEmail({ to, name, subject, html }) {
+async function sendEmail({ to, name, subject, html }) {
   return transporter.sendMail({
     from: process.env.EMAIL_FROM,
     to,
@@ -152,3 +152,5 @@ export async function sendEmail({ to, name, subject, html }) {
     html: html.replace(/\{\{EMAIL\}\}/g, encodeURIComponent(to)),
   });
 }
+
+module.exports = { transporter, EMAIL_SEQUENCE, sendEmail };

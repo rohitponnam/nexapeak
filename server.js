@@ -1,11 +1,9 @@
-import 'dotenv/config';
-import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import leadsHandler from './api/leads.js';
-import cronHandler from './api/cron.js';
+require('dotenv').config();
+const express = require('express');
+const path = require('path');
+const leadsHandler = require('./api/leads');
+const cronHandler = require('./api/cron');
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = process.env.PORT || 3000;
 
